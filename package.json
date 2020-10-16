@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev":"nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "node": "^14.13.1"
+    "node": "^14.13.1",
+    "socket.io": "^2.3.0",
+    "soket.io": "0.0.1-security"
   },
   "devDependencies": {
     "nodemon": "^2.0.5"
