@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Chat App</title>
+        <link rel="icon" href="./img/favicon.png">
+        <link rel="stylesheet" href="./css/styles.min.css">
     </head>
     <body>
-        Chat App
+        <div class="chat">
+            <div class="chat__sidebar">
+            </div>
+            <div class="chat__main">
+                <div id="messages" class="chat__messages"></div>   
+                <div class="compose">
+                    <form id="message-form">
+                        <input name="message" placeholder="Message">
+                        <button>Send</button>
+                    </form>
+                    <button id="send-location">Send Location</button>
+                </div>  
+            </div>
+        </div>
+        
 
-        <div id="messages"></div>    
-        <div id="locations"></div>
-        <form id="message-form">
-            <input name="message" placeholder="Message">
-            <button>Send</button>
-        </form>
-        <button id="send-location">Send Location</button>
+        
         
         <script id="message-template" type="text/html">
-            <div>
-                <p>{{createdAt}} - {{message}}</p>
+            <div class="message">
+                <p>
+                    <span class="message__name">Some User name</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                <p> {{message}}</p>
             </div>
         </script>
         <script id="location-template" type="text/html">
-            <div>
+            <div class="message">
                 <p>
-                    {{createdAt}}: <a href={{url}} target="__blank"> My Current Location</a>
+                    <span class="message__name">Some User name</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                   <a href={{url}} target="__blank"> My Current Location</a>
                 </p>
             </div>
         </script>

@@ -18,7 +18,7 @@ const socket = io()
          url: url.url,
          createdAt: moment(url.createdAt).format("h:mm a")
      })
-     $locations.insertAdjacentHTML('beforeend', html)
+     $messages.insertAdjacentHTML('beforeend', html)
  })
 //plain dynamic text using Mustache
  socket.on('message',(message)=>{
@@ -54,7 +54,8 @@ $sendLocationButton.addEventListener('click',()=>{
     }
     $sendLocationButton.setAttribute('disabled', 'disabled');
     navigator.geolocation.getCurrentPosition((position)=>{
-        $sendLocationButton.removeAttribute('disabled')
+        $sendLocationButton.removeAttribute('disabled');
+        $messageFormInput.focus()
         console.log(position)
         socket.emit('sendLocation',{ 
             latitude:position.coords.latitude, 
