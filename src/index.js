@@ -19,8 +19,14 @@ app.use(express.static(publicDirectoryPath));
 io.on('connection',(socket)=>{
     console.log('New WEB Connection')
 
-    socket.emit('message', generateMessage('Welcome!'))
-    socket.broadcast.emit('message',generateMessage('A new User has Joined the clan'))
+    
+    
+    socket.on('join',({ username, room })=>{
+        socket.join(room)
+
+        socket.emit('message', generateMessage(`Welcome! ${username}`))
+        socket.broadcast.to(room).emit('message',generateMessage(`${username} has Joined the clan`))
+    })
     socket.on('sendMessage',(message, callback)=>{
         const filter = new Filter();
         if(filter.isProfane(message)){

@@ -7,10 +7,13 @@ const socket = io()
  const $messageFormInput = $messageForm.querySelector('input');
  const $sendLocationButton = document.querySelector('#send-location');
  const $messages = document.querySelector('#messages');
- const $locations = document.querySelector('#locations')
+ //const $locations = document.querySelector('#locations')
  //Templates
  const messageTemplate = document.querySelector('#message-template').innerHTML;
  const locationTemplate = document.querySelector('#location-template').innerHTML;
+
+ //options
+ const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
 //location using Mustache
  socket.on('locationMessage', (url)=>{
      console.log(url);
@@ -62,3 +65,5 @@ $sendLocationButton.addEventListener('click',()=>{
             longitude:position.coords.longitude },error=>console.log(error?error:'the location was shared'))
     })
 })
+
+socket.emit('join',{ username, room });
